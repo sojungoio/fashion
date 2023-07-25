@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+body{
+    background-color: #fff;
+    overflow-y:scroll
+}
+#hearder_wrapper{
+    max-width: 1300px;
+    height: 100%;
+    margin-top: 100px auto;
+}
+#header_wrapper .logo {
+    position: absolute;
+    top: 3%;
+    left: 10%;
+    font-size: xx-large;
+}
+#header_wrapper .logo a{
+    margin-left: 38px;
+    font-size: xxx-large;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    font-family: 'DM Serif Text', serif;
+}
+a, button{
+    cursor: pointer;
+}
+#main_menu_container{
+    border-bottom: 2px solid rgba(0, 0, 0, .2);
+    border-top: 2px solid rgba(0, 0, 0, .2);
+    width: 100%;
+    background-color: #fff;
+    margin-top: 150px;
+}
+#main_menu_container #main_menu {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 100px; /* 위아래 30px, 좌우는 각각 요소들 사이의 간격으로 조정 */
+    max-width: 1300px;
+    position: relative;
+}
+#main_menu_container .main_menu a{
+    display: flex;
+    margin-right: 150px; 
+    justify-content: center;
+    color: #666;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: large;
+    font-family: 'Cardo', serif;
+}
+.season balloon{
+    position: absolute;
+    left: 160px;
+    top: 45px;
+    z-index: 100;
+    width: 140px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.15);
+    border: 1px solid rgba(0,0,0,.12);
+    border-radius: 3px;
+    background: #fff;
+    padding: 5px 0;
+}
+#main_menu_container .season_menu a{
+    display: flex;
+    padding: 10px 15px;
+    color: #666;
+    text-decoration: none;
+    font-size: 13px;
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #d2d2d2;
+	min-width: 130px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	height: 120px;
+}
+.slideshow-container {
+          max-width: 1500px;
+          position: relative;
+          margin-left: 7%;
+        }
+        
+        .mySlides {
+          display: none;
+        }
+        
+        .slideshow-container img {
+            width: calc(33.33% - 20px);
+          height: auto;
+          float: left;
+          box-sizing: border-box;
+          margin: 0 5px;
+          border: 1px solid rgba(0,0,0,.12);
+        }
+        
+        .prev{
+          cursor: pointer;
+          position: absolute;
+          left: 0%;
+          top: 50%;
+          width: auto;
+          padding: 16px;
+          margin-top: 200px;
+          color: white;
+          font-weight: bold;
+          font-size: 18px;
+          transition: 0.6s ease;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+          background-color: rgba(0, 0, 0, 0.5); /* 버튼 배경색 */
+        }
+        .next {
+          cursor: pointer;
+          position: absolute;
+          top: 50%;
+          width: auto;
+          padding: 16px;
+          margin-top: 200px;
+          color: white;
+          font-weight: bold;
+          font-size: 18px;
+          transition: 0.6s ease;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+          background-color: rgba(0, 0, 0, 0.5); /* 버튼 배경색 */
+        }
+        
+        .next {
+          right: 30px;
+          border-radius: 3px 0 0 3px;
+        }
+        
+        .prev:hover,
+        .next:hover {
+          background-color: rgba(92, 89, 89, 0.76);
+        }
+        
+        .clearfix::after {
+          content: "";
+          clear: both;
+          display: table;
+        }
+h1{
+    font-size: 30px;
+    margin-left: 43%;
+    margin-top: 7%;
+    font-family: 'Orbit', sans-serif;
+}
+.best {
+  color: rgb(230, 124, 124); /* BEST의 색상을 빨강으로 설정 */
+}
+
+.codi {
+  color: black; /* 코디의 색상을 검정으로 설정 */
+}
