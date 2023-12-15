@@ -378,26 +378,5 @@ blurBackground.addEventListener("click", function() {
           <a class="prev" onclick="plusSlides(-1)">❮</a>
           <a class="next" onclick="plusSlides(1)">❯</a>
         </div>   
-		
-        <!-- <div class="slideshow-container">
-            <div class="mySlides">
-              <img src="crawling/iamge_00.jpg">
-              <img src="crawling/iamge_21.jpg">
-              <img src="crawling/iamge_41.jpg">
-            </div>
-            <div class="mySlides">
-              <img src="crawling/iamge_21.jpg">
-              <img src="crawling/iamge_41.jpg">
-              <img src="crawling/iamge_00.jpg">
-            </div>
-            <div class="mySlides">
-              <img src="crawling/iamge_41.jpg">
-              <img src="crawling/iamge_00.jpg">
-              <img src="crawling/iamge_21.jpg">
-            </div>
-            
-            <a class="prev" onclick="plusSlides(-1)">❮</a>
-            <a class="next" onclick="plusSlides(1)">❯</a>
-          </div>  -->  
 </body>
 </html>

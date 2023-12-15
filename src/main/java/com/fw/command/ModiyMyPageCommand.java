@@ -16,13 +16,10 @@ public class ModiyMyPageCommand implements Command{
 		HttpSession session = request.getSession();
 		AccountDTO account = (AccountDTO) session.getAttribute("account");
 		AccountDAO dao = AccountDAO.getAccountDAO();
-		int cnt = dao.updateInfo(account);
 		
-		if(cnt < 1) {
-			System.out.println("비밀번호를 다시 입력해주세요.");
-		}
+		String identified = account.getIdentified();
+		String password = request.getParameter("password");
 		
-		System.out.println("변경할놈 아이디 : " + request.getParameter("identified"));
-		System.out.println("변경할놈 패스워드 : " + request.getParameter("password"));
+		int cnt = dao.updateInfo(identified, password);
 	}
 }

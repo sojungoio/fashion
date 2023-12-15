@@ -173,7 +173,21 @@ a, button {
 	border: 2px solid rgba(251, 249, 249, 0.2);
 	font-size: larger;
 	padding: 10px 10px;
-	margin-left: 220%;
+	margin-left: 160%;
+	margin-top: 50%;
+	transform: rotate(-360deg);
+	white-space: nowrap;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight: bolder;
+}
+#header_navi .btn-info1 {
+	background-color: transparent;
+	background: #b15a5a;
+	color: rgb(254, 254, 254);
+	border: 2px solid rgba(251, 249, 249, 0.2);
+	font-size: larger;
+	padding: 10px 10px;
+	margin-left: 5%;
 	margin-top: 50%;
 	transform: rotate(-360deg);
 	white-space: nowrap;
@@ -192,7 +206,18 @@ a, button {
 	display: none; /* 초기에는 보이지 않도록 설정 */
 }
 
-#modal-container {
+#modal-container-update {
+	display: none;
+	position: fixed;
+	padding-top: 15%; 
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 9999;
+}
+#modal-container-delete{
 	display: none;
 	position: fixed;
 	padding-top: 15%; 
@@ -233,10 +258,11 @@ h1 {
     }
 </style>
 <script type="text/javascript">
-function showModel() {
-	var modalContainer = document.getElementById('modal-container');
-	modalContainer.style.display = 'block';
+function showModal(modalId) {
+    var modal = document.getElementById(modalId);
+    modal.style.display = "block";
 }
+
 
 function hideModal(event) {
 	if (event.target === event.currentTarget) {
@@ -281,6 +307,9 @@ function hideModal(event) {
 
 	function showAlert() {
 		alert("패스워드가 변경되었습니다.");
+	}
+	function showAlert1() {
+		alert("탈퇴 되었습니다.");
 	}
     $('#passwordOk').blur(function() {
         if($('#password').val() != $('#passwordOk').val()) {
@@ -363,12 +392,13 @@ function hideModal(event) {
 		<li><img src="mypageimg.png"> <span>${account.nickname}님<br>
 				환영합니다.
 		</span>
-			<button class="btn-info" onclick="showModel()">정보수정</button></li>
+			<button class="btn-info" onclick="showModal('modal-container-update')">정보수정</button>
+			<button class="btn-info1" onclick="showModal('modal-container-delete')">회원탈퇴</button>
 	</ul>
 	<div class="container">
 		<div class="page_menu">내 코디</div>
 	</div>
-	<div id="modal-container" onclick="hideModal()">
+	<div id="modal-container-update" onclick="hideModal()">
 		<div id="modal-content">
 			<form action="updateInfo.do" method="post" name="updateInfo" onsubmit="return InfoCheck();">
 				<h1>정보수정</h1>
@@ -379,11 +409,22 @@ function hideModal(event) {
 					<label for="email">이메일:</label> <input type="email" id="email" name="email" value="${account.email}" disabled="disabled"><br> <br> 
 					<button class="save" onclick="event.stopPropagation(); showAlert()">저장</button> 
 					<button class="close" onclick="redirectToMyPage()">닫기</button>
-					<button class="withdraw" onclick="withdrawFromAccount()">탈퇴</button>
 			</form>
 		</div>
 	</div>
-
+	<div id="modal-container-delete" onclick="hideModal()">
+		<div id="modal-content">
+			<form action="deleteInfo.do" method="post" name="deleteInfo" onsubmit="return InfoCheck();">
+				<h1>회원탈퇴</h1>
+					<label for="username">아이디:</label> <input type="text" id="identified" name="identified" value="${account.identified}" ><br><br>
+					<labal for="password">패스워드:</labla> <input type="password" id="password" name="password" required><br><br>
+					<labla for="passwordOk">패스워드 확인:</labla> <input type="password" id="passwordOk" name="passwordOk" required><br><br>
+					<label for="email">이메일:</label> <input type="email" id="email" name="email" value="${account.email}" disabled="disabled"><br> <br> 
+					<button class="delete" onclick="event.stopPropagation(); showAlert1()">탈퇴</button> 
+					<button class="close" onclick="redirectToMyPage()">닫기</button>
+			</form>
+		</div>
+	</div>
 
 
 

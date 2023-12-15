@@ -19,3 +19,5 @@ public class BoardCommand implements Command {
 		request.setAttribute("list", list);
 	}
 }
+
+

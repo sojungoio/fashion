@@ -106,8 +106,8 @@ public class FrontController extends HttpServlet {
 			viewPage = "alert.do";
 			flag = 1;
 		} else if (commandName.equals("/logout.do")) {
-			HttpSession session = request.getSession(); // 세션 가져오기
-			session.invalidate(); // 세션 삭제
+			HttpSession session = request.getSession();
+			session.invalidate();
 			viewPage = "Frist.jsp";
 			flag = 1;
 		//새로 추가한 내용
@@ -148,7 +148,6 @@ public class FrontController extends HttpServlet {
 			command = new IDCheckCommand();
 			command.excute(request, response);
 			out = response.getWriter();
-//			System.out.println("result " + request.getAttribute("result"));
 			out.write(request.getAttribute("result") + "");
 			flag = 2;
 		} else if (commandName.equals("/emailCheck.do")) {
@@ -180,19 +179,10 @@ public class FrontController extends HttpServlet {
 			flag = 1;
 			
 		} else if (commandName.equals("/deleteInfo.do")) {
-			
-			AccountDAO dao = AccountDAO.getAccountDAO();
-			int cnt = dao.deleteInfo(request.getParameter("identified"));
-			
-			if(cnt < 1) {
-				System.out.println("삭제가 불가능합니다.");
-			}
-			
-			System.out.println("삭제할놈 아이디 : " + request.getParameter("identified"));
-			System.out.println("삭제할놈 패스워드 : " + request.getParameter("password"));
-			
-			HttpSession session = request.getSession(); // 세션 가져오기
-			session.invalidate(); // 세션 삭제
+			command = new DeleteCommand();
+			command.excute(request, response);
+			HttpSession session = request.getSession();
+			session.invalidate();
 			viewPage = "frist.do";
 			flag = 1;
 			

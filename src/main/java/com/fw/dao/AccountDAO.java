@@ -196,13 +196,10 @@ public class AccountDAO {
 	    } // end loginCheck()
 
 	// 회원정보 수정
-	public int updateInfo(AccountDTO account) {
+	public int updateInfo(String identified, String password) {
 		
-		String password = account.getPassword();
-		String identified = account.getIdentified();
 		
 		String sql = "UPDATE " + TABLE_NAME + " SET password = '" + password + "' WHERE identified = '" + identified + "'";
-
 
 		System.out.println(sql);
 
@@ -217,10 +214,11 @@ public class AccountDAO {
 	}
 
 	// 회원정보 삭제
-	public int deleteInfo(String identified) {
-		AccountDTO dto = this.getAccountDTO(identified);
-
-		String sql = "DELETE FROM " + TABLE_NAME + " WHERE AccountId = '" + dto.getAccountId() + "'";
+	public int deleteInfo(AccountDTO account) {
+		
+		String AccountId = account.getAccountId();
+		
+		String sql = "DELETE FROM " + TABLE_NAME + " WHERE AccountId = '" + AccountId + "'";
 
 		System.out.println(sql);
 
@@ -275,7 +273,8 @@ public class AccountDAO {
 	//게시글리스트
 	public ArrayList<BoardInfoDTO> listBoardDAO(String season, String age){
 		ArrayList<BoardInfoDTO> list = new ArrayList<BoardInfoDTO>();
-		final String sql = "SELECT * FROM " + "BoardInfo A left outer join account B on A.AccountId = B.AccountId" + " WHERE A.season = '" + season + "' AND age = '" + age + "'";
+		final String sql = "SELECT * FROM " + "BoardInfo A left outer join account B on A.AccountId = B.AccountId" 
+							+ " WHERE A.season = '" + season + "' AND age = '" + age + "'";
 		System.out.println(sql);
 		try(Connection conn = dataSource.getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);
@@ -299,6 +298,8 @@ public class AccountDAO {
 		}
 		return list;
 	}
+	
+	
 	public ArrayList<BoardInfoDTO> listBoardDAOByLike(){
 		ArrayList<BoardInfoDTO> list = new ArrayList<BoardInfoDTO>();
 		final String sql = "select * from Boardinfo order by view desc limit 9";
@@ -325,11 +326,9 @@ public class AccountDAO {
 		}
 		return list;
 	}
-	
-//	public ArrayList<BoardInfoDTO> listBoardDAOMyCodi(String identified){
+
 	public ArrayList<BoardInfoDTO> listBoardDAOMyCodi(String nickname){
 		ArrayList<BoardInfoDTO> list = new ArrayList<BoardInfoDTO>();
-//		final String sql = "select * from boardinfo where identified = '" + identified + "'";
 		final String sql = "select * from boardinfo where nickname = '" + nickname + "'";
 		System.out.println(sql);
 		try(Connection conn = dataSource.getConnection();
@@ -354,28 +353,7 @@ public class AccountDAO {
 		}
 		return list;
 	}
-/*
-	// 댓글 기능
-	public AccountDTO replyDAO(String no) {
-		AccountDTO dto = getAccountDTO(no);
-		return dto;
-	}
 
-	public void modifyOK(AccountDTO dto) {
-		final String sql = "UPDATE " + TABLE_NAME + " SET TITLE=?, TEXT=?, FILE=?, WTIME=NOW() WHERE no=?";
-		int result = 0;
-		try(Connection conn = dataSource.getConnection();
-				PreparedStatement ps = conn.prepareStatement(sql))
-		{
-			ps.setString(1, dto.gettitle());
-			ps.setString(2, dto.gettext());
-			ps.setString(3, dto.getfile());
-			result = ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-*/
 	public int UpDate(String boardidx) {
 		final String sql = "UPDATE " + "BoardInfo SET view = view + 1 WHERE boardidx = '" + boardidx + "'" ;
 		System.out.println(sql);
